@@ -16,17 +16,21 @@ module MathGame
       end
     end
 
-    def game_over?
-      if @player1.life == 0
-        puts "#{@player2.name} wins with a score of #{@player2.life}/3"
+    def print_result
+      if @player1.dead?
+        puts "#{@player2.name} wins with a score of #{@player2.life}/#{@player2.original_lives}"
         puts "----- GAME OVER -----"
         puts "Good bye!"
-      elsif @player2.life == 0
-        puts "#{@player1.name} wins with a score of #{@player1.life}/3"
+      elsif @player2.dead?
+        puts "#{@player1.name} wins with a score of #{@player1.life}/#{@player1.original_lives}"
         puts "----- GAME OVER -----"
         puts "Good bye!"
       end
     end
+
+    def game_over?
+      @player1.dead? || @player2.dead?
+    end
+
   end
 end
-

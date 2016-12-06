@@ -6,10 +6,9 @@ require './MathGame'
 p1 = MathGame::Player.new('Jeffrey')
 p2 = MathGame::Player.new('Jebbie')
 new_game = MathGame::Game.new(p1, p2)
-new_turn = MathGame::Turn.new
 
 
-until p1.life === 0 || p2.life === 0 do
+until new_game.game_over? do
   puts "----- NEW TURN -----"
   new_question = MathGame::Question.new
 
@@ -18,7 +17,7 @@ until p1.life === 0 || p2.life === 0 do
   answer = $stdin.gets.chomp.to_i
 
   if !new_question.check_equation(answer)
-    new_game.current_player.life_lost
+    new_game.current_player.lose_life
     puts new_question.wrong_answer
     puts
   else
@@ -26,11 +25,11 @@ until p1.life === 0 || p2.life === 0 do
     puts
   end
 
-  puts "#{new_game.player1.name} #{new_game.player1.life}/3 vs #{new_game.player2.name} #{new_game.player2.life}/3"
+  puts "#{new_game.player1.name} #{new_game.player1.life}/#{MathGame::Player::LIVES} vs #{new_game.player2.name} #{new_game.player2.life}/#{MathGame::Player::LIVES}"
   puts
 
   new_game.change_player
-  new_game.game_over?
 end
+  new_game.print_result
 
 
