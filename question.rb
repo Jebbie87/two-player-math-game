@@ -7,11 +7,19 @@ module MathGame
     end
 
     def print_equation
-      puts "What is #{@num1} plus #{@num2}"
+      "What is #{@num1} plus #{@num2}"
     end
 
     def check_equation(answer)
       answer === @num1 + @num2
+    end
+
+    def right_answer
+      ["Smarty pants", "WOOOOOWWWWW YOU SO SMART", "Math must be easy for you huh?"].sample
+    end
+
+    def wrong_answer
+      ["I think you need some more math lessons", "This is basic math.....", "Please. Not like this"].sample
     end
   end
 end
